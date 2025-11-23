@@ -123,28 +123,43 @@ st.title("📦 Optimizador Logístico Courier con Grafos")
 
 st.sidebar.header("⚙️ Configuración del aplicativo")
 
+tipo_grafo = st.sidebar.selectbox(
+    "Tipo de grafo",
+    ["k-NN", "MST"],
+    key="sb_tipo_grafo"
+)
 
+k_vecinos = st.sidebar.slider(
+    "k vecinos (solo k-NN)",
+    min_value=1,
+    max_value=6,
+    value=3,
+    step=1,
+    key="sb_k_vecinos"
+)
 
-tipo_grafo = st.sidebar.selectbox("Tipo de grafo", ["k-NN", "MST"])
-k_vecinos = st.sidebar.slider("k vecinos (solo k-NN)", 1, 6, 3)
-
-submuestro = st.sidebar.checkbox("Usar submuestreo visual", value=True)
+submuestro = st.sidebar.checkbox(
+    "Usar submuestreo visual",
+    value=True,
+    key="sb_submuestreo"
+)
 
 n_max = st.sidebar.slider(
     "Máx. nodos a visualizar",
     min_value=100,
     max_value=1500,
-    value=400,     # valor inicial
-    step=100       # paso entre valores
+    value=400,
+    step=100,
+    key="sb_n_max"
 )
-
 
 st.sidebar.markdown("---")
 st.sidebar.subheader("Análisis disponibles")
-activar_ruta = st.sidebar.checkbox("Ruta óptima (Dijkstra)")
-activar_hubs = st.sidebar.checkbox("Hubs (betweenness)")
-activar_falla = st.sidebar.checkbox("Simulación de falla")
-activar_drones = st.sidebar.checkbox("Escenario con drones")
+activar_ruta = st.sidebar.checkbox("Ruta óptima (Dijkstra)", key="sb_ruta")
+activar_hubs = st.sidebar.checkbox("Hubs (betweenness)", key="sb_hubs")
+activar_falla = st.sidebar.checkbox("Simulación de falla", key="sb_falla")
+activar_drones = st.sidebar.checkbox("Escenario con drones", key="sb_drones")
+
 
 # ==========================
 # Lógica principal
@@ -303,6 +318,7 @@ st.sidebar.header("⚙️ Configuración del aplicativo")
 
 tipo_grafo = st.sidebar.selectbox("Tipo de grafo", ["k-NN", "MST"])
 k_vecinos = st.sidebar.slider("k vecinos (solo k-NN)", 1, 6, 3)
+
 
 
 
